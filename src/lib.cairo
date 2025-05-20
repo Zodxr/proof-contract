@@ -6,6 +6,7 @@ pub trait IHelloStarknet<TContractState> {
     fn increase_balance(ref self: TContractState, amount: felt252);
     /// Retrieve contract balance.
     fn get_balance(self: @TContractState) -> felt252;
+    fn get_balances(self: @TContractState) -> felt252;
 }
 
 /// Simple contract for managing balance.
@@ -26,6 +27,10 @@ mod HelloStarknet {
         }
 
         fn get_balance(self: @ContractState) -> felt252 {
+            self.balance.read()
+        }
+
+         fn get_balances(self: @ContractState) -> felt252 {
             self.balance.read()
         }
     }
